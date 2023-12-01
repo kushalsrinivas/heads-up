@@ -3,10 +3,11 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import React, { useState } from "react";
 import Image from "next/image";
-interface SignupProps {
+interface SigninProps {
   handler: (state: boolean) => void;
 }
-function Signup({ handler }: SignupProps) {
+
+function Signin({ handler }: SigninProps) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -14,21 +15,8 @@ function Signup({ handler }: SignupProps) {
   return (
     <div className="w-full m-auto p-10">
       <h1 className="text-white p-5 text-center text-4xl font-black tracking-wider hover:tracking-wide transition-all ease-in-out">
-        SIGN UP
+        SIGN IN
       </h1>
-      <div className="p-5 flex flex-col gap-2">
-        <Label className="text-white font-bold text-3xl tracking-tighter hover:tracking-wide transition-all ease-in-out ">
-          NAME
-        </Label>
-        <Input
-          className="text-xl font-semibold"
-          value={name}
-          onChange={(e) => {
-            setName(e.target.value);
-          }}
-          placeholder="Name"
-        ></Input>
-      </div>
       <div className="p-5 flex flex-col gap-2">
         <Label className="text-white font-bold text-3xl tracking-tighter hover:tracking-wide transition-all ease-in-out ">
           Email
@@ -63,19 +51,19 @@ function Signup({ handler }: SignupProps) {
           variant={"secondary"}
           onSubmit={handleSubmit}
         >
-          Sign Up
+          Sign In
         </Button>
         <Button
           onClick={() => {
-            handler(true);
+            handler(false);
           }}
           className="w-full"
         >
-          already a member?
+          create a new account
         </Button>
       </div>
     </div>
   );
 }
 
-export default Signup;
+export default Signin;
