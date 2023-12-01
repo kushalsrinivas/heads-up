@@ -21,7 +21,7 @@ function Signup({ handler }: SignupProps) {
           NAME
         </Label>
         <Input
-          className="text-xl font-semibold"
+          className="text-xl font-medium"
           value={name}
           onChange={(e) => {
             setName(e.target.value);
@@ -34,7 +34,7 @@ function Signup({ handler }: SignupProps) {
           Email
         </Label>
         <Input
-          className="text-xl font-semibold"
+          className="text-xl font-medium"
           value={email}
           type="email"
           onChange={(e) => {
@@ -48,7 +48,7 @@ function Signup({ handler }: SignupProps) {
           Password
         </Label>
         <Input
-          className="text-xl font-semibold"
+          className="text-xl font-medium"
           value={password}
           type="password"
           onChange={(e) => {

@@ -22,7 +22,7 @@ function Signin({ handler }: SigninProps) {
           Email
         </Label>
         <Input
-          className="text-xl font-semibold"
+          className="text-xl font-medium"
           value={email}
           type="email"
           onChange={(e) => {
@@ -32,7 +32,7 @@ function Signin({ handler }: SigninProps) {
         ></Input>
       </div>
       <div className="p-5 flex flex-col gap-2">
-        <Label className="text-white font-bold text-3xl tracking-tighter hover:tracking-wide transition-all ease-in-out ">
+        <Label className="text-white font-medium text-3xl tracking-tighter hover:tracking-wide transition-all ease-in-out ">
           Password
         </Label>
         <Input
