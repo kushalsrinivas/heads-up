@@ -2,13 +2,11 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import Signup from "@/components/Signup";
+
 import Signin from "@/components/Signin";
 function Page() {
   const [url, setUrl] = useState("");
-  const handler = (state: boolean) => {
-    setMember(state);
-  };
+
   const list = [
     "https://media.giphy.com/media/vWye6xPB61oZ7Mx8hq/giphy.gif",
     "https://media.giphy.com/media/sCIIl5TVOzdfmRfMI0/giphy.gif",
@@ -27,7 +25,7 @@ function Page() {
         </main>
       </div>
 
-      <Signin handler={handler} />
+      <Signin />
     </div>
   );
 }
