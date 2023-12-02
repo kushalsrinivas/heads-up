@@ -2,7 +2,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import React, { useState } from "react";
-import Image from "next/image";
+
 interface SignupProps {
   handler: (state: boolean) => void;
 }
