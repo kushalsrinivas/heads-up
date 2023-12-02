@@ -5,8 +5,6 @@ import Image from "next/image";
 import Signup from "@/components/Signup";
 import Signin from "@/components/Signin";
 function Page() {
-  const handleSubmit = async () => {};
-  const [isMemeber, setMember] = useState(false);
   const [url, setUrl] = useState("");
   const handler = (state: boolean) => {
     setMember(state);
@@ -29,7 +27,7 @@ function Page() {
         </main>
       </div>
 
-      {isMemeber ? <Signin handler={handler} /> : <Signup handler={handler} />}
+      <Signin handler={handler} />
     </div>
   );
 }
