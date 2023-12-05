@@ -54,7 +54,7 @@ function Signin() {
   }
   if (User) {
     return (
-      <div>
+      <div className="p-10 w-full text-center flex justify-center items-center text-white bg-black text-3xl font-bold">
         <Button onClick={handleLogout}>Logout</Button>
       </div>
     );

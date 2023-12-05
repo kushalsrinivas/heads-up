@@ -17,12 +17,9 @@ export default async function Home() {
       <Header></Header>
       <h1 className="text-white text-3xl bg-black font-bold">
         {user ? (
-          <>
-            <h1 className="text-white">welcome back</h1>{" "}
-            <h1 className="text-green-500">{user.user_metadata.full_name}</h1>
-          </>
+          <h1 className="text-green-500">{user.user_metadata.full_name}</h1>
         ) : (
-          "lets game"
+          <h1 className="text-white">lets game</h1>
         )}
       </h1>
     </div>
