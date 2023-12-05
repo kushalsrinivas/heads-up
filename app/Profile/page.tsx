@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Profile from "@/components/Profile";
+
 function Home() {
   const [User, setUser] = useState<Object | null>(null);
   const [loading, setLoading] = useState(true);
@@ -37,9 +38,14 @@ function Home() {
     if (User) {
       return (
         <div>
-          <Profile username={User.user_metadata.full_name}></Profile>
+          <Profile
+            username={User.user_metadata.full_name}
+            avatar_url={User.user_metadata.avatar_url}
+          ></Profile>
           <div className="p-10 w-full text-center flex justify-center items-center text-white bg-black text-3xl font-bold">
-            <Button onClick={handleLogout}>Logout</Button>
+            <Button variant={"destructive"} onClick={handleLogout}>
+              Logout
+            </Button>
           </div>
         </div>
       );

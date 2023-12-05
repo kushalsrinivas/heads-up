@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-
+import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 import Nav from "@/components/Nav";
 
@@ -19,8 +19,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Nav></Nav>
-        <main>{children}</main>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Nav></Nav>
+          <main>{children}</main>
+        </ThemeProvider>
       </body>
     </html>
   );
