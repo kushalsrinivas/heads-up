@@ -30,7 +30,7 @@ function Home() {
   }, []);
   if (loading) {
     return (
-      <h1 className="p-10 w-full text-center flex justify-center items-center text-white bg-black text-3xl font-bold">
+      <h1 className="p-10 w-full text-center flex justify-center items-center dark:bg-black text-3xl font-bold">
         loading
       </h1>
     );
@@ -42,7 +42,7 @@ function Home() {
             username={User.user_metadata.full_name}
             avatar_url={User.user_metadata.avatar_url}
           ></Profile>
-          <div className="p-10 w-full text-center flex justify-center items-center text-white bg-black text-3xl font-bold">
+          <div className="p-10 w-full text-center flex justify-center items-center  dark:bg-black text-3xl font-bold">
             <Button variant={"destructive"} onClick={handleLogout}>
               Logout
             </Button>

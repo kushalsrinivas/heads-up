@@ -9,6 +9,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { ModeToggle } from "./Theme-toogle";
 
 interface ProfileProps {
   username: string;
@@ -17,7 +18,7 @@ interface ProfileProps {
 
 const Profile: FC<ProfileProps> = (props) => {
   return (
-    <div className="h-full w-full bg-black text-white ">
+    <div className="h-full w-full dark:bg-black ">
       <div className="flex flex-row p-10 ">
         <Card>
           <CardHeader>
@@ -30,11 +31,7 @@ const Profile: FC<ProfileProps> = (props) => {
             </CardTitle>
           </CardHeader>
         </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle>{props.username}</CardTitle>
-          </CardHeader>
-        </Card>
+        <ModeToggle></ModeToggle>
       </div>
     </div>
   );
