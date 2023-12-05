@@ -37,7 +37,7 @@ function Home() {
     if (User) {
       return (
         <div>
-          <Profile></Profile>
+          <Profile username={User.user_metadata.full_name}></Profile>
           <div className="p-10 w-full text-center flex justify-center items-center text-white bg-black text-3xl font-bold">
             <Button onClick={handleLogout}>Logout</Button>
           </div>
