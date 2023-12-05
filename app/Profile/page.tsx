@@ -1,13 +1,16 @@
 "use client";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import {
+  User,
+  createClientComponentClient,
+} from "@supabase/auth-helpers-nextjs";
 import { Button } from "@/components/ui/button";
 
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Profile from "@/components/Profile";
-
+import { UserData } from "@/schema/schema";
 function Home() {
-  const [User, setUser] = useState<Object | null>(null);
+  const [User, setUser] = useState<UserData | null>(null);
   const [loading, setLoading] = useState(true);
 
   const supabase = createClientComponentClient();
