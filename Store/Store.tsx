@@ -1,3 +1,4 @@
+"use client";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { createContext, ReactNode, useState } from "react";
 
@@ -8,7 +9,7 @@ interface StoreContextProps {
 }
 
 const StoreContext = createContext<StoreContextProps>({
-  getSession: async () => null,
+  getSession: async () => {},
   setSession: () => {},
   token: null,
 });
@@ -27,17 +28,18 @@ export const StoreProvider: React.FC<StoreProviderProps> = (props) => {
     } = await supabase.auth.getUser();
     setToken(user);
 
-    return user || null;
+    return user;
   };
 
   const setSession = (session: any): void => {
     setToken(session);
+    console.log("sfsefhesf", session);
   };
 
   const context: StoreContextProps = {
     token,
     getSession: getToken,
-    setSession,
+    setSession: setSession,
   };
 
   return (

@@ -1,11 +1,13 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import React, { useState } from "react";
-import Image from "next/image";
+import React, { useState, useContext } from "react";
+import StoreContext from "@/Store/Store";
+
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { FaDiscord } from "react-icons/fa6";
 function Signin() {
+  const ctx = useContext(StoreContext);
   const supabase = createClientComponentClient();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -13,12 +15,16 @@ function Signin() {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: "discord",
     });
+    ctx.setSession(data);
   }
   const handleSubmit = async () => {
-    supabase.auth.signInWithPassword({
+    const res = await supabase.auth.signInWithPassword({
       email: email,
       password: password,
     });
+
+    console.log(res);
+    ctx.setSession(res.data.user);
   };
   return (
     <div className="w-full m-auto p-10">
