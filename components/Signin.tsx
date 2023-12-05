@@ -9,8 +9,7 @@ import { useRouter } from "next/navigation";
 function Signin() {
   const router = useRouter();
   const supabase = createClientComponentClient();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+
   const [User, setUser] = useState<Object | null>(null);
   const [Loading, setLoading] = useState(true);
   async function signInWithDiscord() {
@@ -21,14 +20,7 @@ function Signin() {
       },
     });
   }
-  const handleSubmit = async () => {
-    const res = await supabase.auth.signInWithPassword({
-      email: email,
-      password: password,
-    });
 
-    console.log(res);
-  };
   const handleLogout = async () => {
     await supabase.auth.signOut();
     setUser(null);
@@ -64,45 +56,12 @@ function Signin() {
       <h1 className="text-white p-5 text-center text-4xl font-black tracking-wider hover:tracking-wide transition-all ease-in-out">
         SIGN IN
       </h1>
-      <div className="p-5 flex flex-col gap-2">
-        <Label className="text-white font-bold text-3xl tracking-tighter hover:tracking-wide transition-all ease-in-out ">
-          User Name
-        </Label>
-        <Input
-          className="text-xl font-semibold"
-          value={email}
-          type="email"
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-          placeholder="Email"
-        ></Input>
-      </div>
-      <div className="p-5 flex flex-col gap-2">
-        <Label className="text-white font-semibold text-3xl tracking-tighter hover:tracking-wide transition-all ease-in-out ">
-          Password
-        </Label>
-        <Input
-          className="text-xl font-semibold"
-          value={password}
-          type="password"
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-          placeholder="Password"
-        ></Input>
-      </div>
+
       <div className="p-5 flex flex-row w-full gap-5 justify-between">
         <Button
-          className="w-full font-bold"
-          variant={"secondary"}
-          onSubmit={handleSubmit}
-        >
-          Sign In
-        </Button>
-        <Button
           onClick={signInWithDiscord}
-          className="w-full  font-bold flex flex-row gap-3"
+          variant={"secondary"}
+          className="w-1/2 m-auto h-[20vh] text-3xl font-bold flex flex-row gap-3"
         >
           <FaDiscord /> Discord
         </Button>
