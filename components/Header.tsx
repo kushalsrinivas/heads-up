@@ -14,7 +14,7 @@ function Header() {
     setUrl(list[Math.floor(Math.random() * list.length)]);
   }, []);
   return (
-    <div className="h-screen w-screen bg-black">
+    <div className="h-auto w-screen bg-black">
       <main className="relative h-72 overflow-hidden ">
         <div className="absolute inset-0">
           <Image src={url} layout="fill" objectFit="cover" alt="" />

@@ -1,26 +1,30 @@
 import Header from "@/components/Header";
 import Image from "next/image";
-import React, { useEffect, useContext, use } from "react";
+import React, { useEffect, useContext, use, useState } from "react";
 import { cookies } from "next/headers";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import StoreContext from "@/Store/Store";
+
 export default async function Home() {
   const cookieStore = cookies();
   const supabase = createServerComponentClient({ cookies: () => cookieStore });
-  const { getSession, setSession, token } = useContext(StoreContext);
+
   const {
     data: { user },
   } = await supabase.auth.getUser();
-  if (user) {
-    console.log(user);
-    setSession(user);
-    return (
-      <h1 className="text-white bg-black">{user.user_metadata.full_name}</h1>
-    );
-  }
+  console.log(user);
   return (
-    <div>
+    <div className="h-screen bg-black">
       <Header></Header>
+      <h1 className="text-white text-3xl bg-black font-bold">
+        {user ? (
+          <>
+            <h1 className="text-white">welcome back</h1>{" "}
+            <h1 className="text-green-500">{user.user_metadata.full_name}</h1>
+          </>
+        ) : (
+          "lets game"
+        )}
+      </h1>
     </div>
   );
 }
