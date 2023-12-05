@@ -21,11 +21,7 @@ function Signin() {
     });
   }
 
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
-    setUser(null);
-    router.refresh();
-  };
+
   useEffect(() => {
     async function getUser() {
       const {
@@ -45,11 +41,8 @@ function Signin() {
     );
   }
   if (User) {
-    return (
-      <div className="p-10 w-full text-center flex justify-center items-center text-white bg-black text-3xl font-bold">
-        <Button onClick={handleLogout}>Logout</Button>
-      </div>
-    );
+    router.push("/Profile");
+
   }
   return (
     <div className="w-full m-auto p-10">
