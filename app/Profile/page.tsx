@@ -8,9 +8,9 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Profile from "@/components/Profile";
-import { UserData } from "@/schema/schema";
+import { UserData, userMetaData, UserMetadata } from "@/schema/schema";
 function Home() {
-  const [User, setUser] = useState<UserData | null>(null);
+  const [User, setUser] = useState<userMetaData | null>(null);
   const [loading, setLoading] = useState(true);
 
   const supabase = createClientComponentClient();
@@ -25,7 +25,9 @@ function Home() {
       const {
         data: { user },
       } = await supabase.auth.getUser();
-      setUser(user);
+      if (user && user.user_metadata) {
+        setUser(user.user_metadata as UserMetadata);
+      }
       setLoading(false);
     }
 
@@ -42,8 +44,8 @@ function Home() {
       return (
         <div>
           <Profile
-            username={User.user_metadata.full_name}
-            avatar_url={User.user_metadata.avatar_url}
+            username={User.full_name}
+            avatar_url={User.avatar_url}
           ></Profile>
           <div className="p-10 w-full text-center flex justify-center items-center  dark:bg-black text-3xl font-bold">
             <Button variant={"destructive"} onClick={handleLogout}>

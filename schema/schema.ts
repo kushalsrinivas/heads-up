@@ -11,21 +11,7 @@ export interface UserData {
       provider?: string;
       providers?: string[];
     };
-    user_metadata: {
-      avatar_url: string;
-      custom_claims: {
-        global_name: string;
-      };
-      email: string;
-      email_verified: boolean;
-      full_name: string;
-      iss: string;
-      name: string;
-      phone_verified: boolean;
-      picture: string;
-      provider_id: string;
-      sub: string;
-    };
+    user_metadata: userMetaData;
     identities: [
       {
         id: string;
@@ -40,4 +26,35 @@ export interface UserData {
     created_at: string;
     updated_at: string;
   }
-  
+
+  export interface userMetaData { 
+    custom_claims?: {
+        global_name: string;
+      };
+    avatar_url: string | '';
+    email: string | '';
+    email_verified: boolean;
+    full_name: string | '';
+    iss: string | '';
+    name: string | '';
+    phone_verified: boolean;
+    picture: string | '';
+    provider_id: string | '';
+    sub: string | '';
+  }
+
+  export type UserMetadata = {
+    avatar_url: string;
+    custom_claims: {
+      global_name: string;
+    };
+    email: string;
+    email_verified: boolean;
+    full_name: string;
+    iss: string;
+    name: string;
+    phone_verified: boolean;
+    picture: string;
+    provider_id: string;
+    sub: string;
+  };
