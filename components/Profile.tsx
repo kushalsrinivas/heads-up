@@ -32,10 +32,9 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ModeToggle } from "./Theme-toogle";
-import { LogOut, DollarSign, BarChart, Settings } from "lucide-react";
 import DashBoard from "./profile/DashBoard";
+import Settings from "./profile/Settings";
+import { useStoreContext } from "@/app/Context/Store";
 interface ProfileProps {
   username: string;
   avatar_url: string;
@@ -55,12 +54,37 @@ const Profile: FC<ProfileProps> = (props) => {
     },
   ];
   const [Display, setDisplay] = useState(options[0]);
+  const ctx = useStoreContext();
   return (
     <div className="h-full flex flex-row w-full dark:bg-black ">
       <div className="flex p-10 w-1/4 flex-col gap-2  ">
         {options.map((item, id) => {
-          return <h1 key={id}>{item.name}</h1>;
+          return (
+            <Button
+              variant={"outline"}
+              onClick={() => {
+                setDisplay(
+                  options.filter((temp, id) => temp.name === item.name)[0]
+                );
+              }}
+              name={item.name}
+              key={id}
+            >
+              {item.name}
+            </Button>
+          );
         })}
+        <Button disabled variant={"ghost"}>
+          Clan
+        </Button>
+        <Button
+          onClick={() => {
+            ctx.LogoutSession();
+          }}
+          variant={"destructive"}
+        >
+          Log Out
+        </Button>
       </div>
       <div className="w-full">{Display.component}</div>
     </div>

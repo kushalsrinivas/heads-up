@@ -36,11 +36,6 @@ function Home() {
             username={User.full_name}
             avatar_url={User.avatar_url}
           ></Profile>
-          <div className="p-10 w-full text-center flex justify-center items-center  dark:bg-black text-3xl font-bold">
-            <Button variant={"destructive"} onClick={handleLogout}>
-              Logout
-            </Button>
-          </div>
         </div>
       );
     } else {
