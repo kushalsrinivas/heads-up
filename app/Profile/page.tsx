@@ -1,10 +1,7 @@
 "use client";
-import {
-  User,
-  createClientComponentClient,
-} from "@supabase/auth-helpers-nextjs";
-import { Button } from "@/components/ui/button";
 
+import { Button } from "@/components/ui/button";
+import { useStoreContext } from "../Context/Store";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Profile from "@/components/Profile";
@@ -12,26 +9,18 @@ import { UserData, userMetaData, UserMetadata } from "@/schema/schema";
 function Home() {
   const [User, setUser] = useState<userMetaData | null>(null);
   const [loading, setLoading] = useState(true);
+  const ctx = useStoreContext();
 
-  const supabase = createClientComponentClient();
   const router = useRouter();
   const handleLogout = async () => {
-    await supabase.auth.signOut();
-    setUser(null);
-    router.refresh();
+    ctx.LogoutSession();
+    router.push("/Login");
   };
   useEffect(() => {
-    async function getUser() {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      if (user && user.user_metadata) {
-        setUser(user.user_metadata as UserMetadata);
-      }
+    if (ctx.token) {
       setLoading(false);
+      setUser(ctx.token.user_metadata);
     }
-
-    getUser();
   }, []);
   if (loading) {
     return (
