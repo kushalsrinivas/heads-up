@@ -37,7 +37,7 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = (props) => {
   const LogoutSession = async () => {
     const res = await supabase.auth.signOut();
     setToken(null);
-    router.refresh();
+    router.push("/Login");
   };
 
   const context: StoreContextProps = {

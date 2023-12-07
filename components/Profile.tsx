@@ -44,9 +44,7 @@ const Profile: FC<ProfileProps> = (props) => {
   const options = [
     {
       name: "dashboard",
-      component: (
-        <DashBoard username={props.username} avatar_url={props.avatar_url} />
-      ),
+      component: <DashBoard />,
     },
     {
       name: "settings",
