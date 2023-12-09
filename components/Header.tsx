@@ -6,9 +6,10 @@ function Header() {
   const [url, setUrl] = useState("");
   const list = [
     "https://media.giphy.com/media/Ev4gQixBkzGAzbpttl/giphy.gif",
-    "https://media.giphy.com/media/xT39DiFOlBJITZmKLC/giphy.gif",
     "https://media.giphy.com/media/4zOO9xNkUrY6hTrtxf/giphy.gif",
-    "https://media.giphy.com/media/xd5kq59h2JlRzB8Uer/giphy.gif",
+    "https://media.giphy.com/media/wjjvv8CEWSdAcdlgtP/giphy.gif",
+    "https://media.giphy.com/media/VeMfDj4KctWsUEfs1L/giphy.gif",
+    "https://media.giphy.com/media/X7eVBA2TSFz53oxolL/giphy.gif",
   ];
   useEffect(() => {
     setUrl(list[Math.floor(Math.random() * list.length)]);
