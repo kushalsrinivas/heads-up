@@ -21,7 +21,9 @@ function Nav() {
         </h1>
       </div>
       <div className="flex flex-row  gap-2">
-        <Button variant={"secondary"}>create tournament</Button>
+        <Link href={"/Create"}>
+          <Button variant={"secondary"}>create tournament</Button>
+        </Link>
         <Link href={"/Login"}>
           <Button>Profile</Button>
         </Link>
