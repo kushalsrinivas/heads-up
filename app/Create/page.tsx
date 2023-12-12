@@ -7,7 +7,7 @@ import React, { useState } from "react";
 function Home() {
   const [name, setName] = useState("");
   return (
-    <div className="flex justify-center flex-col w-1/2 m-auto">
+    <div className="flex justify-center flex-col w-1/2 m-auto clear">
       <div>
         <Label>Name </Label>
         <Input

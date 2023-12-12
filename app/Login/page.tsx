@@ -24,7 +24,6 @@ function Page() {
           </div>
         </main>
       </div>
-
       <Signin />
     </div>
   );
