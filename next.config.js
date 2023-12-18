@@ -6,6 +6,10 @@ module.exports = nextConfig;
 
 module.exports = {
   images: {
-    domains: ["media.giphy.com"],
+    domains: [
+      "media.giphy.com",
+      "play-lh.googleusercontent.com",
+      "i.pinimg.com",
+    ],
   },
 };

@@ -7,7 +7,9 @@ interface StoreContextProps {
   isSignedin: boolean;
   getSession: () => Promise<any | null>; // Replace 'any' with the actual type returned by getSession
   setSession: (session: any | null) => void;
-  LogoutSession: () => void; // Replace 'any' with the actual type of session data
+  LogoutSession: () => void;
+  InsertData: (obj: any | null) => void;
+  // Replace 'any' with the actual type of session data
   token: any | null; // Replace 'any' with the actual type of token
 }
 
@@ -16,6 +18,7 @@ const StoreContext = createContext<StoreContextProps>({
   getSession: async () => null,
   setSession: () => {},
   LogoutSession: async () => {},
+  InsertData: async () => {},
   token: null,
 });
 
@@ -30,7 +33,9 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = (props) => {
     setToken(user);
     return user || null;
   };
-
+  const InserData = async (obj: any | null) => {
+    const { data, error } = await supabase.from("tournaments").insert([obj]);
+  };
   const setSession = (session: any | null) => {
     setToken(session);
   };
@@ -42,6 +47,7 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = (props) => {
 
   const context: StoreContextProps = {
     token: token,
+    InsertData: InserData,
     LogoutSession: LogoutSession,
     getSession: getToken,
     setSession: setSession,
