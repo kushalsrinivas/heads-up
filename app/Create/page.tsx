@@ -6,17 +6,26 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useStoreContext } from "../Context/Store";
 import { SiPubg } from "react-icons/si";
+import { Calendar } from "@/components/ui/calendar";
 import Image from "next/image";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { Textarea } from "@/components/ui/textarea";
+
 function Home() {
   const ctx = useStoreContext();
   const router = useRouter();
   const [name, setName] = useState("");
   const [desc, setDesc] = useState("");
-  const [NoPlayer, setNP] = useState("");
+  const [NoPlayer, setNP] = useState(0);
   const [Game, setGame] = useState("BGMI");
-  const [Schedule, setSchedule] = useState("");
-
+  const d = new Date();
+  const [Schedule, setSchedule] = useState<Date>();
   if (!ctx.token) {
     router.push("/Login");
   }
@@ -33,16 +42,29 @@ function Home() {
 
   return (
     <div className="flex justify-center flex-col w-1/2 m-auto gap-3 clear">
-      <div>
-        <Label>Name </Label>
-        <Input
-          placeholder="Valorant epic battle"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
+      <div className="h-[65vh] flex flex-col gap-3">
+        <div>
+          <Label className="text-3xl font-bold ">Name </Label>
+          <Input
+            placeholder="Valorant epic battle"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+        <div>
+          <Label className="text-3xl font-bold ">Description </Label>
+          <Textarea
+            maxLength={2000}
+            cols={15}
+            rows={15}
+            placeholder="epic gaming desciption"
+            value={desc}
+            onChange={(e) => setDesc(e.target.value)}
+          />
+        </div>
       </div>
       <div className="h-full w-full ">
-        <Label>Game</Label>
+        <Label className="text-3xl font-bold ">Game</Label>
         <div className="flex lg:flex-row gap-3 flex-col h-full w-full p-5">
           {games.map((item, id) => {
             return (
@@ -71,15 +93,49 @@ function Home() {
           })}
         </div>
       </div>{" "}
-
       <div>
-        <Label>Name </Label>
+        <Label className="text-3xl font-bold ">Number of players </Label>
         <Input
-          placeholder="Valorant epic battle"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          placeholder="1"
+          type="number"
+          value={NoPlayer}
+          onChange={(e) =>
+            setNP(parseInt(e.target.value) > 0 ? e.target.value : 0)
+          }
         />
-        <Button>submit</Button>
+      </div>
+      <div className="flex flex-col gap-5">
+        <Label className="text-3xl font-bold ">Tournament date </Label>
+        <div className="flex flex-col gap-5">
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button
+                variant={"outline"}
+                className={cn("w-full pl-3 text-left font-normal")}
+              >
+                {d.toDateString(Schedule)}
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-auto p-0" align="start">
+              <Calendar
+                mode="single"
+                onSelect={(date: any) => {
+                  setSchedule(new Date().toDateString(date));
+                  console.log("====================================");
+                  console.log(date);
+                  console.log("====================================");
+                  console.log("sdfsdfsd", new Date().toDateString(date));
+                }}
+                disabled={
+                  (date) => date <= new Date()
+                  // || date < new Date("1900-01-01")
+                }
+                initialFocus
+              />
+            </PopoverContent>
+          </Popover>
+          <Button>Publish tournament</Button>
+        </div>
       </div>
     </div>
   );
