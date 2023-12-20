@@ -69,7 +69,7 @@ function Home() {
       </div>,
 
       <div key={32424} className="h-full w-full ">
-        <Label className="text-3xl font-bold ">Game</Label>
+        <Label className="text-xl font-semibold ">Game</Label>
         <div className="flex lg:flex-row gap-3 flex-col h-full w-full p-5">
           {games.map((item, id) => {
             return (
@@ -100,8 +100,10 @@ function Home() {
       </div>,
 
       <div key={12938129839108}>
-        <div>
-          <Label className="text-3xl font-bold ">Number of players </Label>
+        <div className="flex flex-col gap-3">
+          <Label className="text-lg opacity-75 font-semibold ">
+            Number of players
+          </Label>
           <Input
             placeholder="1"
             type="number"
@@ -111,8 +113,10 @@ function Home() {
             }
           />
         </div>
-        <div className="flex flex-col gap-5">
-          <Label className="text-3xl font-bold ">Tournament date </Label>
+        <div className="flex flex-col gap-3">
+          <Label className="text-lg opacity-75 font-semibold ">
+            Tournament date
+          </Label>
           <div className="flex flex-col gap-5">
             <Popover>
               <PopoverTrigger asChild>
@@ -128,10 +132,6 @@ function Home() {
                   mode="single"
                   onSelect={(date: any) => {
                     setSchedule(new Date().toDateString(date));
-                    console.log("====================================");
-                    console.log(date);
-                    console.log("====================================");
-                    console.log("sdfsdfsd", new Date().toDateString(date));
                   }}
                   disabled={
                     (date) => date <= new Date()
