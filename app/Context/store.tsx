@@ -35,6 +35,7 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = (props) => {
   };
   const InserData = async (obj: any | null) => {
     const { data, error } = await supabase.from("tournaments").insert([obj]);
+    console.log(data || error);
   };
   const setSession = (session: any | null) => {
     setToken(session);

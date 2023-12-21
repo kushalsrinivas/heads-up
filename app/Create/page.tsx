@@ -164,7 +164,21 @@ function Home() {
                 </Button>
               )}
               {isLastStep ? (
-                <Button variant={"destructive"}>Publish</Button>
+                <Button
+                  variant={"destructive"}
+                  onClick={() =>
+                    ctx.InsertData({
+                      uuid : 
+                      name: name,
+                      description: desc,
+                      no_players: NoPlayer,
+                      game: Game,
+                      event_schedule: Schedule,
+                    })
+                  }
+                >
+                  Publish
+                </Button>
               ) : (
                 <Button onClick={next}>next</Button>
               )}
