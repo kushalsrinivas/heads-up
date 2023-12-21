@@ -16,6 +16,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { v4 as uuidv4 } from "uuid";
 import {
   Popover,
   PopoverContent,
@@ -168,7 +169,7 @@ function Home() {
                   variant={"destructive"}
                   onClick={() =>
                     ctx.InsertData({
-                      uuid : 
+                      uuid: uuidv4(),
                       name: name,
                       description: desc,
                       no_players: NoPlayer,
