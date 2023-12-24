@@ -40,8 +40,8 @@ export default function Home() {
         <div>
           {events?.map((tournament, id) => {
             return (
-              <Link key={id} href={`/Match/${tournament.uuid}`}>
-                <div>{tournament.name}</div>;
+              <Link key={id} href={`Match/${tournament.uuid}`}>
+                <div>{tournament.name}</div>
               </Link>
             );
           })}

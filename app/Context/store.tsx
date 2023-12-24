@@ -11,6 +11,7 @@ interface StoreContextProps {
   LogoutSession: () => void;
   InsertData: (obj: any | null) => void;
   getEvents: () => Promise<any | null>;
+  FindEvent: (uuid: string) => Promise<any | null>;
 
   // Replace 'any' with the actual type of session data
   token: any | null; // Replace 'any' with the actual type of token
@@ -23,6 +24,7 @@ const StoreContext = createContext<StoreContextProps>({
   setSession: () => {},
   LogoutSession: async () => {},
   InsertData: async () => {},
+  FindEvent: async (uuid: string) => null,
   token: null,
 });
 
@@ -57,8 +59,12 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = (props) => {
     return data || null;
   };
 
+  const FindEvent = async (uuid: string) => {
+    return null;
+  };
   const context: StoreContextProps = {
     token: token,
+    FindEvent: FindEvent,
     getEvents: getEvents,
     InsertData: InserData,
     LogoutSession: LogoutSession,
