@@ -60,8 +60,11 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = (props) => {
   };
 
   const FindEvent = async (uuid: string) => {
-    const { data, error } = await supabase.from("tournaments").select();
-    return null;
+    const { data, error } = await supabase
+      .from("tournaments")
+      .select("*")
+      .eq("uuid", uuid);
+    return data || null;
   };
   const context: StoreContextProps = {
     token: token,
