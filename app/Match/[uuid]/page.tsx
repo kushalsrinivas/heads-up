@@ -2,17 +2,12 @@
 import { useRouter, useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { useStoreContext } from "@/app/Context/Store";
+import { Event } from "@/@types/schema";
 
 function Page() {
   const ctx = useStoreContext();
   const params = useParams<{ uuid: string }>();
-  const [data, setData] = useState<{
-    name: string;
-    creator_name: string;
-    game: string;
-    description: string;
-    no_players: string;
-  } | null>(null);
+  const [data, setData] = useState<Event | null>(null);
   useEffect(() => {
     ctx
       .FindEvent(params.uuid)

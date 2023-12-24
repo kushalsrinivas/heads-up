@@ -5,10 +5,10 @@ import React, { useEffect, useContext, use, useState } from "react";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useStoreContext } from "./Context/Store";
 import Link from "next/link";
-
+import { Event } from "@/@types/schema";
 export default function Home() {
   const [loading, setLoading] = useState(false);
-  const [events, setEvents] = useState<Object | null>(null);
+  const [events, setEvents] = useState<Event[] | null>(null);
   const ctx = useStoreContext();
   useEffect(() => {
     ctx.getSession();
