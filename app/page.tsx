@@ -24,6 +24,9 @@ export default function Home() {
           <h1 className="text-white">lets game</h1>
         )}
       </h1>
+      {
+        
+      }
     </div>
   );
 }

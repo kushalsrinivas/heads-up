@@ -34,7 +34,7 @@ function Home() {
   const [Game, setGame] = useState("BGMI");
   const d = new Date();
   const [Schedule, setSchedule] = useState<Date>();
-  if (!ctx.token) {
+  if (ctx.token == null) {
     router.push("/Login");
   }
   const games = [
@@ -174,7 +174,10 @@ function Home() {
                       description: desc,
                       no_players: NoPlayer,
                       game: Game,
-                      event_schedule: Schedule,
+                      event_schedule: null,
+                      creator_mail : ctx.token.email,
+                      creator_name : ctx.token.user_metadata.full_name
+ 
                     })
                   }
                 >

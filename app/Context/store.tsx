@@ -9,6 +9,8 @@ interface StoreContextProps {
   setSession: (session: any | null) => void;
   LogoutSession: () => void;
   InsertData: (obj: any | null) => void;
+  getEvents: () => void;
+
   // Replace 'any' with the actual type of session data
   token: any | null; // Replace 'any' with the actual type of token
 }
@@ -16,6 +18,7 @@ interface StoreContextProps {
 const StoreContext = createContext<StoreContextProps>({
   isSignedin: false,
   getSession: async () => null,
+  getEvents: async () => null,
   setSession: () => {},
   LogoutSession: async () => {},
   InsertData: async () => {},
@@ -31,6 +34,7 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = (props) => {
       data: { user },
     } = await supabase.auth.getUser();
     setToken(user);
+
     return user || null;
   };
   const InserData = async (obj: any | null) => {
@@ -46,8 +50,14 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = (props) => {
     router.push("/Login");
   };
 
+  const getEvents = async () => {
+    const { data, error } = await supabase.from("tournaments").select("*");
+    return data || null;
+  };
+
   const context: StoreContextProps = {
     token: token,
+    getEvents: getEvents,
     InsertData: InserData,
     LogoutSession: LogoutSession,
     getSession: getToken,
