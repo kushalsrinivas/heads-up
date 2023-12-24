@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import { StoreProvider } from "./Context/Store";
+import Footer from "@/components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -28,6 +29,7 @@ export default function RootLayout({
           >
             <Nav></Nav>
             <main>{children}</main>
+            <Footer></Footer>
           </ThemeProvider>
         </StoreProvider>
       </body>

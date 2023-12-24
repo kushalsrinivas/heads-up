@@ -15,8 +15,8 @@ interface EventCardProps {
 
 const EventCard: React.FC<EventCardProps> = ({ tournament }) => {
   return (
-    <div className="text-white">
-      <Card>
+    <div className="h-full">
+      <Card className="h-full">
         <CardHeader>
           <CardTitle className="flex flex-row w-full justify-between">
             <h1>{tournament.name}</h1>

@@ -50,7 +50,7 @@ export default function Home() {
           {events?.map((tournament, id) => {
             return (
               <Link
-                className="min-h-[900px]"
+                className="min-h-[150px]"
                 key={id}
                 href={`Match/${tournament.uuid}`}
               >
