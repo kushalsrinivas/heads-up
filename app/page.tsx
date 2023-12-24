@@ -6,6 +6,7 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useStoreContext } from "./Context/Store";
 import Link from "next/link";
 import { Event } from "@/@types/schema";
+import EventCard from "@/components/events/Event_card";
 export default function Home() {
   const [loading, setLoading] = useState(false);
   const [events, setEvents] = useState<Event[] | null>(null);
@@ -37,11 +38,15 @@ export default function Home() {
       </h1>
       <h2 className="text-white font-bold">{events ? "done" : "loading"}</h2>
       {events ? (
-        <div>
+        <div className="w-[95%] m-auto grid grid-cols-4 gap-5 ">
           {events?.map((tournament, id) => {
             return (
-              <Link key={id} href={`Match/${tournament.uuid}`}>
-                <div>{tournament.name}</div>
+              <Link
+                className="min-h-[900px]"
+                key={id}
+                href={`Match/${tournament.uuid}`}
+              >
+                <EventCard tournament={tournament}></EventCard>
               </Link>
             );
           })}
