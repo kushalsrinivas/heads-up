@@ -6,7 +6,13 @@ import { useStoreContext } from "@/app/Context/Store";
 function Page() {
   const ctx = useStoreContext();
   const params = useParams<{ uuid: string }>();
-  const [data, setData] = useState<Object | null>(null);
+  const [data, setData] = useState<{
+    name: string;
+    creator_name: string;
+    game: string;
+    description: string;
+    no_players: string;
+  } | null>(null);
   useEffect(() => {
     ctx
       .FindEvent(params.uuid)
@@ -24,7 +30,7 @@ function Page() {
       <ul>
         <li>{data.name}</li>
         <li>{data.creator_name}</li>
-        <li>{data.name}</li>
+        <li>{data.game}</li>
         <li>{data.description}</li>
         <li>{data.no_players}</li>
       </ul>
