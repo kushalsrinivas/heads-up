@@ -11,4 +11,11 @@ export type Event =  {
     no_players: number;
     id: number;
     uuid: string;
+    pricepool : PricePool;
+}
+export type PricePool = {
+    pool : number;
+    first : number;
+    second : number;
+    third : number;
 }

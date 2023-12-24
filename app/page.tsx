@@ -2,7 +2,7 @@
 import Header from "@/components/Header";
 import Image from "next/image";
 import React, { useEffect, useContext, use, useState } from "react";
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { BounceLoader } from "react-spinners";
 import { useStoreContext } from "./Context/Store";
 import Link from "next/link";
 import { Event } from "@/@types/schema";
@@ -29,14 +29,22 @@ export default function Home() {
       <Header></Header>
       <h1 className="text-white text-3xl bg-black font-bold">
         {ctx.token ? (
-          <h1 className="text-green-500">
+          <h1 className="text-yellow-400 w-[95%] m-auto mt-4">
+            <span className="text-white mr-3">welcome back</span>
             {ctx.token.user_metadata.full_name}
           </h1>
         ) : (
           <h1 className="text-white">lets game</h1>
         )}
       </h1>
-      <h2 className="text-white font-bold">{events ? "done" : "loading"}</h2>
+      <div className="text-white flex flex-row items-center gap-3 w-[95%] m-auto my-5 text-4xl font-bold">
+        Live
+        <BounceLoader
+          color="rgba(214, 54, 54, 1)"
+          size={26}
+          speedMultiplier={1}
+        />
+      </div>
       {events ? (
         <div className="w-[95%] m-auto grid grid-cols-4 gap-5 ">
           {events?.map((tournament, id) => {

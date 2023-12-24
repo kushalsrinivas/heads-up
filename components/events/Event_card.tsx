@@ -18,13 +18,20 @@ const EventCard: React.FC<EventCardProps> = ({ tournament }) => {
     <div className="text-white">
       <Card>
         <CardHeader>
-          <CardTitle>{tournament.name}</CardTitle>
+          <CardTitle className="flex flex-row w-full justify-between">
+            <h1>{tournament.name}</h1>
+            <h1 className="text-green-300">${tournament.pricepool.pool}</h1>
+          </CardTitle>
         </CardHeader>
-        <CardContent></CardContent>
+        <CardContent>
+          <CardDescription>{tournament.description}</CardDescription>
+        </CardContent>
         <CardFooter>
-          <CardDescription className="flex w-full flex-row justify-between">
-            <div>{tournament.game}</div>
-            <div>{tournament.creator_name}</div>
+          <CardDescription className="flex w-full  flex-row justify-between">
+            <div className="text-white opacity-50">{tournament.game}</div>
+            <div className="text-white opacity-50">
+              {tournament.creator_name}
+            </div>
           </CardDescription>
         </CardFooter>
       </Card>
