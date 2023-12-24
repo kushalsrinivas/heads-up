@@ -1,5 +1,6 @@
 "use client";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+
 import { useRouter } from "next/navigation";
 import { createContext, ReactNode, useContext, useState } from "react";
 
@@ -9,7 +10,7 @@ interface StoreContextProps {
   setSession: (session: any | null) => void;
   LogoutSession: () => void;
   InsertData: (obj: any | null) => void;
-  getEvents: () => void;
+  getEvents: () => Promise<any | null>;
 
   // Replace 'any' with the actual type of session data
   token: any | null; // Replace 'any' with the actual type of token
@@ -52,6 +53,7 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = (props) => {
 
   const getEvents = async () => {
     const { data, error } = await supabase.from("tournaments").select("*");
+
     return data || null;
   };
 
