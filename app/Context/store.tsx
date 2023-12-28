@@ -10,7 +10,12 @@ interface StoreContextProps {
   setSession: (session: any | null) => void;
   LogoutSession: () => void;
   InsertData: (obj: any | null) => void;
+  getPricePool: () => Promise<any | null>;
+  getGamesPlayed: () => Promise<any | null>;
   getEvents: () => Promise<any | null>;
+  getMatchPlayers: () => Promise<any | null>;
+
+
   FindEvent: (uuid: string) => Promise<any | null>;
 
   // Replace 'any' with the actual type of session data
@@ -21,6 +26,9 @@ const StoreContext = createContext<StoreContextProps>({
   isSignedin: false,
   getSession: async () => null,
   getEvents: async () => null,
+  getPricePool: async () => null,
+  getGamesPlayed: async () => null,
+  getMatchPlayers: async () => null,
   setSession: () => {},
   LogoutSession: async () => {},
   InsertData: async () => {},
@@ -58,7 +66,9 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = (props) => {
 
     return data || null;
   };
-
+  const getPricePool = async () => {};
+  const getGamesPlayed = async () => {};
+  const getMatchPlayers = async () => {};
   const FindEvent = async (uuid: string) => {
     const { data, error } = await supabase
       .from("tournaments")
@@ -68,6 +78,9 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = (props) => {
   };
   const context: StoreContextProps = {
     token: token,
+    getGamesPlayed : getGamesPlayed,
+    getMatchPlayers : getMatchPlayers,
+    getPricePool: getPricePool,
     FindEvent: FindEvent,
     getEvents: getEvents,
     InsertData: InserData,
